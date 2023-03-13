@@ -1,0 +1,37 @@
+<div>
+  <button routerLink="/todo/add">Dodaj zadanie</button>
+</div>
+<div>
+  <ul>
+    <ng-container *ngFor="let todo of todos$ | async; index as i">
+      <li *ngIf="isVisible">
+        Ttitle: {{ todo.title }}, Description: {{ todo.description }}
+      </li>
+      <!-- <li *ngIf="!isVisible">
+        Ttitle: {{ todo.title }}, Description: {{ todo.description }}
+      </li> -->
+
+      <button type="button" (click)="deleteTasks(todo._id)" *ngIf="isVisible">
+        Usuń zadanie
+      </button>
+      <button type="button" (click)="hideList(todo)" *ngIf="isVisible">
+        Edytuj
+      </button>
+    </ng-container>
+    <form [formGroup]="taskForm" *ngIf="!isVisible">
+      <input
+        class="new-todo"
+        placeholder="Wprowadź zadanie"
+        formControlName="title"
+        [value]="this.taskEdited.title"
+      />
+      <input
+        class="new-todo"
+        placeholder="Opis"
+        formControlName="description"
+        [value]="taskEdited.description"
+      />
+      <button type="button" (click)="updatePost()">Zatwierdź</button>
+    </form>
+  </ul>
+</div>
