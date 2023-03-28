@@ -1,34 +1,71 @@
-<div>
-  <button routerLink="/todo/add">Dodaj zadanie</button>
+<div styleClass="button-todo">
+  <button pButton label="Dodaj zadanie" routerLink="/todo/add"></button>
 </div>
-<div>
-  <ul>
-    <ng-container *ngFor="let todo of todos$ | async; index as i">
-      <li *ngIf="isVisible">
-        Ttitle: {{ todo.title }}, Description: {{ todo.description }}
-      </li>
-
-      <button type="button" (click)="deleteTasks(todo._id)" *ngIf="isVisible">
-        Usuń zadanie
-      </button>
-      <button type="button" (click)="hideList(todo)" *ngIf="isVisible">
-        Edytuj
-      </button>
-    </ng-container>
-    <form [formGroup]="taskForm" *ngIf="!isVisible">
-      <input
-        class="new-todo"
-        placeholder="Wprowadź zadanie"
-        formControlName="title"
-        [value]="this.taskEdited.title"
-      />
-      <input
-        class="new-todo"
-        placeholder="Opis"
-        formControlName="description"
-        [value]="taskEdited.description"
-      />
-      <button type="button" (click)="updateTask()">Zatwierdź</button>
-    </form>
-  </ul>
-</div>
+<p-table [value]="todoList">
+  <ng-template pTemplate="header" let-todo>
+    <tr>
+      <th>TITLE</th>
+      <th>DESCRIPTION</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-todo>
+    <tr>
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.description }}</td>
+      <td>
+        <button
+          pButton
+          type="button"
+          (click)="deleteTasks(todo._id)"
+          *ngIf="isVisible"
+        >
+          Usuń zadanie
+        </button>
+      </td>
+      <td>
+        <button
+          pButton
+          type="button"
+          (click)="hideList(todo)"
+          *ngIf="isVisible"
+        >
+          Edytuj
+        </button>
+        <form [formGroup]="taskForm" *ngIf="!isVisible">
+          <input
+            class="new-todo"
+            placeholder="Wprowadź zadanie"
+            formControlName="title"
+            [value]="this.taskEdited.title"
+          />
+          <input
+            class="new-todo"
+            placeholder="Opis"
+            formControlName="description"
+            [value]="taskEdited.description"
+          />
+          <button type="button" (click)="updateTask()">Zatwierdź</button>
+        </form>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<!-- <p-table [value]="todoList">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Vin</th>
+      <th>Year</th>
+      <th>Brand</th>
+      <th>Color</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-car>
+    <tr>
+      <td>{{ car.year }}</td>
+      <td>{{ car.brand }}</td>
+      <td>{{ car.color }}</td>
+    </tr>
+  </ng-template>
+</p-table> -->

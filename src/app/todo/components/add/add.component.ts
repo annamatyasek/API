@@ -6,10 +6,14 @@ import { Dicionary } from '../../types/todo.interface';
 @Component({
   selector: 'app-todo-add',
   templateUrl: './add.component.html',
+  styleUrls: ['./add.component.scss'],
 })
 export class AddComponent implements OnInit {
   taskForm!: FormGroup;
-  constructor(private fb: FormBuilder, private httpService: HttpService) {}
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly httpService: HttpService
+  ) {}
 
   ngOnInit(): void {
     this.taskForm = this.fb.group({

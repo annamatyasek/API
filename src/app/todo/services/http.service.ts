@@ -7,13 +7,13 @@ import { Dicionary } from '../types/todo.interface';
   providedIn: 'root',
 })
 export class HttpService {
-  apiId: string = 'bf4533434df74f11b397e0753392eca3';
-  constructor(private http: HttpClient) {}
+  apiId: string = '0af2fc43862c44c6ba03cd83d295ae18';
+  constructor(private readonly http: HttpClient) {}
 
-  addTask(post: Dicionary): Observable<Dicionary> {
+  addTask(todo: Dicionary): Observable<Dicionary> {
     return this.http.post<Dicionary>(
-      'https://crudcrud.com/api/' + this.apiId + '/todo',
-      post
+      `https://crudcrud.com/api/${this.apiId}/todo`,
+      todo
     );
   }
 
@@ -29,7 +29,6 @@ export class HttpService {
     );
   }
   updatePost(todo: Dicionary, id: string): Observable<Dicionary> {
-    console.log(todo, id);
     return this.http.put<Dicionary>(
       'https://crudcrud.com/api/' + this.apiId + '/todo/' + id,
       todo

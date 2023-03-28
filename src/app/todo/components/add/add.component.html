@@ -1,12 +1,12 @@
-<header class="add">
-  <form [formGroup]="taskForm">
-    <input
-      class="new-todo"
-      placeholder="Wprowadź zadanie"
-      formControlName="title"
-    />
-    <input class="new-todo" placeholder="Opis" formControlName="description" />
-    <button type="button" (click)="addTask()">Zatwierdź</button>
-    <button type="button" routerLink="/">Lista zadań</button>
-  </form>
-</header>
+<form [formGroup]="taskForm">
+  <input
+    class="new-todo"
+    placeholder="Wprowadź zadanie"
+    formControlName="title"
+  />
+  <input class="new-todo" placeholder="Opis" formControlName="description" />
+  <button pButton type="button" (click)="addTask()">Zatwierdź</button>
+  <button pButton class="p-button" type="button" routerLink="/">
+    Lista zadań
+  </button>
+</form>

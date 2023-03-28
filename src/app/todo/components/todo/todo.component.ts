@@ -1,26 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { tap } from 'rxjs';
 import { HttpService } from '../../services/http.service';
-
 import { TodoInterface } from '../../types/todo.interface';
 import { Dicionary } from '../../types/todo.interface';
+import { PrimeNGConfig } from 'primeng/api';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
+  styles: [
+    `
+      :host ::ng-deep button {
+        margin-right: 0.5em;
+      }
+    `,
+  ],
+  styleUrls: ['./todo.component.scss', '../../../app.component.scss'],
 })
 export class TodoComponent implements OnInit {
   taskForm!: FormGroup;
-  todoList: TodoInterface[] = [];
-  todos$ = this.httpService.getTasks();
+  todoList: Dicionary[] = [];
+  selectedTodo!: Dicionary;
   id!: number;
   router: any;
   description: TodoInterface[] = [];
   isVisible: boolean = true;
   taskEdited!: Dicionary;
+  consoleLog() {
+    console.log('cos');
+    console.log(this.todoList);
+  }
 
-  constructor(private httpService: HttpService, private fb: FormBuilder) {}
+  constructor(
+    private httpService: HttpService,
+    private fb: FormBuilder,
+    private primengConfig: PrimeNGConfig
+  ) {}
 
   ngOnInit(): void {
     this.loadTasks();
@@ -28,6 +44,8 @@ export class TodoComponent implements OnInit {
       title: ['', Validators.required],
       description: ['', Validators.required],
     });
+    this.primengConfig.ripple = true;
+    this.httpService.getTasks();
   }
 
   deleteTasks(id: string) {
@@ -35,9 +53,14 @@ export class TodoComponent implements OnInit {
   }
 
   loadTasks() {
-    // console.log('1loadTasks', this.todos$);
-    // this.todos$ = this.httpService.getTasks();
-    // console.log('2loadTasks', this.todos$);
+    this.httpService
+      .getTasks()
+      .pipe(
+        tap((tasks) => {
+          this.todoList = tasks;
+        })
+      )
+      .subscribe();
   }
   hideList(todo: Dicionary) {
     this.taskEdited = todo;

@@ -5,7 +5,7 @@ import { TodoComponent } from './todo/components/todo/todo.component';
 
 const routes: Routes = [
   {
-    path: 'todo/list',
+    path: '',
     component: TodoComponent,
   },
   {
