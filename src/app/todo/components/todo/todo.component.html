@@ -7,9 +7,6 @@
       <li *ngIf="isVisible">
         Ttitle: {{ todo.title }}, Description: {{ todo.description }}
       </li>
-      <!-- <li *ngIf="!isVisible">
-        Ttitle: {{ todo.title }}, Description: {{ todo.description }}
-      </li> -->
 
       <button type="button" (click)="deleteTasks(todo._id)" *ngIf="isVisible">
         Usuń zadanie
@@ -31,7 +28,7 @@
         formControlName="description"
         [value]="taskEdited.description"
       />
-      <button type="button" (click)="updatePost()">Zatwierdź</button>
+      <button type="button" (click)="updateTask()">Zatwierdź</button>
     </form>
   </ul>
 </div>

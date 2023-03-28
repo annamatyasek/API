@@ -7,10 +7,10 @@ import { Dicionary } from '../types/todo.interface';
   providedIn: 'root',
 })
 export class HttpService {
-  apiId: string = '24d4c36f89144e05ae8fc952e05da0f9';
+  apiId: string = 'bf4533434df74f11b397e0753392eca3';
   constructor(private http: HttpClient) {}
 
-  addPost(post: Dicionary): Observable<Dicionary> {
+  addTask(post: Dicionary): Observable<Dicionary> {
     return this.http.post<Dicionary>(
       'https://crudcrud.com/api/' + this.apiId + '/todo',
       post

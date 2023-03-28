@@ -14,12 +14,12 @@ const routes: Routes = [{ path: '', component: TodoComponent }];
     BrowserModule,
     CommonModule,
   ],
-  providers: [TodoService, HttpService],
+  providers: [HttpService],
 })
 export class TodoModule {}
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { TodoService } from './services/todo.service';
+// import { TodoService } from './services/todo.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { HttpService } from './services/http.service';

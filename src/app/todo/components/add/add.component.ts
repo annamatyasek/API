@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoService } from '../../services/todo.service';
-
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpService } from '../../services/http.service';
 import { Dicionary } from '../../types/todo.interface';
@@ -11,11 +9,7 @@ import { Dicionary } from '../../types/todo.interface';
 })
 export class AddComponent implements OnInit {
   taskForm!: FormGroup;
-  constructor(
-    private todoService: TodoService,
-    private fb: FormBuilder,
-    private httpService: HttpService
-  ) {}
+  constructor(private fb: FormBuilder, private httpService: HttpService) {}
 
   ngOnInit(): void {
     this.taskForm = this.fb.group({
@@ -23,19 +17,8 @@ export class AddComponent implements OnInit {
       description: ['', Validators.required],
     });
   }
-
-  // addTodo() {
-  //   console.log(this.taskForm.value);
-  //   this.todoService.addTodo(this.taskForm.get('task')?.value);
-  // }
-
-  addPost() {
-    console.log('addTodo', this.taskForm.value);
+  addTask() {
     const task: Dicionary = this.taskForm.value;
-    this.httpService.addPost(task).subscribe();
+    this.httpService.addTask(task).subscribe();
   }
-  // updateTasks() {
-  //   const task: Dicionary = this.taskForm.value;
-  //   this.httpService.updateTasks(task).subscribe();
-  // }
 }
