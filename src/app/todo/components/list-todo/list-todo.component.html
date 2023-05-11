@@ -1,0 +1,54 @@
+<div class="b-back">
+  <button pButton type="button" routerLink="/todo/add">Powrót</button>
+</div>
+<p-table [value]="todoList">
+  <ng-template pTemplate="header" let-todo>
+    <tr>
+      <th>TITLE</th>
+      <th>DESCRIPTION</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-todo>
+    <tr>
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.description }}</td>
+      <td>
+        <button
+          pButton
+          type="button"
+          (click)="deleteTasks(todo._id)"
+          *ngIf="isVisible"
+        >
+          Usuń zadanie
+        </button>
+      </td>
+      <td>
+        <button
+          pButton
+          type="button"
+          (click)="hideList(todo)"
+          *ngIf="isVisible"
+        >
+          Edytuj
+        </button>
+        <form [formGroup]="taskForm" *ngIf="!isVisible">
+          <input
+            class="new-todo"
+            placeholder="Wprowadź zadanie"
+            formControlName="title"
+            [value]="this.taskEdited.title"
+          />
+          <input
+            class="new-todo"
+            placeholder="Opis"
+            formControlName="description"
+            [value]="taskEdited.description"
+          />
+          <button type="button" (click)="updateTask()">Zatwierdź</button>
+        </form>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { tap } from 'rxjs';
 import { HttpService } from '../../services/http.service';
 import { Dicionary } from '../../types/todo.interface';
-import { tap } from 'rxjs';
-import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
-  selector: 'app-todo-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss'],
+  selector: 'app-list-todo',
+  templateUrl: './list-todo.component.html',
+  styleUrls: ['./list-todo.component.scss'],
 })
-export class AddComponent implements OnInit {
+export class ListTodoComponent implements OnInit {
   taskForm!: FormGroup;
   todoList: Dicionary[] = [];
   isVisible: boolean = true;

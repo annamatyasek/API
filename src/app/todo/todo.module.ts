@@ -14,11 +14,13 @@ import { RippleModule } from 'primeng/ripple';
 import { ListboxModule } from 'primeng/listbox';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { ListTodoComponent } from './components/list-todo/list-todo.component';
 
 // const routes: Routes = [{ path: '', component: TodoComponent }];
 
 @NgModule({
-  declarations: [TodoComponent, AddComponent],
+  declarations: [TodoComponent, AddComponent, ListTodoComponent],
   imports: [
     RouterModule,
     ReactiveFormsModule,
@@ -30,6 +32,7 @@ import { TableModule } from 'primeng/table';
     ListboxModule,
     FormsModule,
     TableModule,
+    InputTextModule,
   ],
 
   bootstrap: [TodoComponent, AddComponent],

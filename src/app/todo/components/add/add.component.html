@@ -1,12 +1,29 @@
-<form [formGroup]="taskForm">
-  <input
-    class="new-todo"
-    placeholder="Wprowadź zadanie"
-    formControlName="title"
-  />
-  <input class="new-todo" placeholder="Opis" formControlName="description" />
-  <button pButton type="button" (click)="addTask()">Zatwierdź</button>
-  <button pButton class="p-button" type="button" routerLink="/">
-    Lista zadań
-  </button>
-</form>
+<div class="container">
+  <form [formGroup]="taskForm">
+    <input pInputText placeholder="Wprowadź zadanie" formControlName="title" />
+
+    <input
+      pInputText
+      class="new-todo"
+      placeholder="Opis"
+      formControlName="description"
+    />
+    <div class="button-style">
+      <button
+        class="b-add"
+        pButton
+        type="button"
+        routerLink="/list-todo"
+        (click)="addTask()"
+      >
+        Zatwierdź
+      </button>
+      <button class="b-back" pButton type="button" routerLink="/list-todo">
+        Lista zadań
+      </button>
+      <button class="b-back" pButton type="button" routerLink="/">
+        Powrót
+      </button>
+    </div>
+  </form>
+</div>

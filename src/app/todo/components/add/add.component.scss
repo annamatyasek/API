@@ -1,3 +1,22 @@
-.p-button {
-  margin-left: 0.5em;
+input {
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border: 3px solid rgb(255, 135, 243);
+  border-radius: 3px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+.container {
+  background-color: #c217b1;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+}
+.button-style {
+  display: flex;
+  justify-content: space-between;
 }
